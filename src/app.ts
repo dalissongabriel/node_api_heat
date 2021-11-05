@@ -1,3 +1,4 @@
+import { Server } from "socket.io";
 import * as dotenv from 'dotenv'
 import express from 'express';
 import http from 'http';
@@ -14,4 +15,14 @@ app.use(router);
 
 const serverHttp = http.createServer(app);
 
-export { serverHttp }
+const io = new Server(serverHttp, {
+  cors: {
+    origin: '*'
+  }
+});
+
+io.on("connection", socket => {
+  console.log(`Usuário conectado no socket ${socket.id}`)
+});
+
+export { serverHttp, io }

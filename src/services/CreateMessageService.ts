@@ -1,5 +1,5 @@
 import prismaClient from '../prisma';
-import { io } from '../socket';
+import { io } from '../app';
 
 
 class CreateMessageService {
